@@ -1,0 +1,45 @@
+<mat-spinner diameter="120" *ngIf="isLoading"></mat-spinner>
+<div
+class="search-results container"
+infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="1000"
+(scrolled)="onScroll()"
+>
+<mat-card
+  *ngFor="let episode of episodes"
+  class="cardItem"
+>
+  <mat-card-content>
+    <div class="characterInfo">
+      <h2>
+        <a
+          [routerLink]="['/episodes', episode.id]"
+          >{{ episode.name }}</a
+        >
+      </h2>
+      <p>
+        <span>Air Date:</span>
+        {{ episode.air_date }}
+      </p>
+      <p>
+        <span>Episode:</span>
+        {{ episode.episode }}
+      </p>
+      <button mat-raised-button *ngIf="!episode.charactersFull" (click)="getEpisodeCharacters(episode.id)">Get Characters</button>
+        <span *ngIf="episode.charactersFull">Characters:</span>
+        <div class="charactercontainer">
+          <span class="characteritem" *ngFor="let character of episode.charactersFull">
+            <a
+              (click)="openDialog(character)"
+              >{{ character.name }}</a
+            >
+          </span>
+        </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>
+<div *ngIf="!notEmptyPost">
+<h1 style="text-align: center">No More Episodes found</h1>
+</div>

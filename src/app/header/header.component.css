@@ -1,0 +1,10 @@
+.navbar {
+  justify-content: space-between;
+  background-color: #97ce4c;
+}
+
+a{
+  color: #44281d;
+  text-decoration: none;
+  margin: 5px;
+}

@@ -1,0 +1,87 @@
+  <!-- <p *ngFor="let character of characters">{{character.name}}</p> -->
+  <mat-spinner diameter="120" *ngIf="isLoading"></mat-spinner>
+  <form>
+  <mat-form-field class="container">
+      <mat-label class="gray">Search</mat-label>
+      <input
+        type="text"
+        matInput
+        [matAutocomplete]="auto"
+        [formControl]="myControl"
+      />
+
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="autoCompleteSelection($event.option.value)"
+        [displayWith]="displayFn"
+      >
+        <mat-option *ngFor="let option of filteredOptions" [value]="option.name">
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-hint class="gray">Minimum 2 Characters</mat-hint>
+    </mat-form-field>
+  </form>
+  <div
+    class="search-results container"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()"
+    *ngIf="!singleCharacterActive"
+  >
+    <mat-card
+      *ngFor="let character of characters"
+      class="cardItem"
+    >
+      <mat-card-content>
+        <div>
+          <img src="{{ character.image }}" />
+        </div>
+        <div class="characterInfo">
+          <h1>{{ character.name }}</h1>
+          <div>
+            <mat-icon
+              style="color:{{ character.status === 'Alive' ? 'green' : character.status === 'Dead' ? 'red' : 'gray' }}"
+              >circle</mat-icon>
+            {{ character.status }} - {{ character.species }} -
+            {{ character.gender }}
+          </div>
+          <div *ngIf="character.type">Type: {{ character.type }}</div>
+          <div>From: {{ character.origin.name }}</div>
+          <div>Last Location: {{ character.location.name }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div *ngIf="!notEmptyPost">
+    <h1 style="text-align: center">No More Characters found</h1>
+  </div>
+
+  <div class="container singleCharacter" *ngIf="singleCharacterActive">
+    <mat-card class="singleCardItem">
+      <mat-card-content>
+        <div>
+          <img src="{{ singleCharacter.image }}" />
+        </div>
+        <div class="characterInfo">
+          <h1>{{ singleCharacter.name }}</h1>
+          <div>
+            <mat-icon
+              style="color:{{singleCharacter.status === 'Alive' ? 'green' : singleCharacter.status === 'Dead' ? 'red' : 'gray' }}"
+              >circle</mat-icon>
+            {{ singleCharacter.status }} - {{ singleCharacter.species }} -
+            {{ singleCharacter.gender }}
+            <div *ngIf="singleCharacter.type">
+              Type: {{ singleCharacter.type }}
+            </div>
+            <div>From: {{ singleCharacter.origin.name }}</div>
+            <div>Last Location: {{ singleCharacter.location.name }}</div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <button class="btn btn-primary" (click)="singleCharacterActive = false">
+      Reset
+    </button>
+  </div>

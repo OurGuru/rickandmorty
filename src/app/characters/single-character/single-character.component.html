@@ -1,0 +1,24 @@
+<div class="container singleCharacter">
+  <mat-card class="singleCardItem">
+    <mat-card-content>
+      <div>
+        <img src="{{ singleCharacter.image }}" />
+      </div>
+      <div class="characterInfo">
+        <h1>{{ singleCharacter.name }}</h1>
+        <div>
+          <mat-icon
+            style="color:{{singleCharacter.status === 'Alive' ? 'green' : singleCharacter.status === 'Dead' ? 'red' : 'gray' }}"
+            >circle</mat-icon>
+          {{ singleCharacter.status }} - {{ singleCharacter.species }} -
+          {{ singleCharacter.gender }}
+          <div *ngIf="singleCharacter.type">
+            Type: {{ singleCharacter.type }}
+          </div>
+          <div>From: {{ singleCharacter.origin.name }}</div>
+          <div>Last Location: {{ singleCharacter.location.name }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

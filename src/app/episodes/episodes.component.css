@@ -1,3 +1,43 @@
+h2>a{
+  text-decoration: none;
+  /* use rick and morty palette colors for the title */
+  color: #ffb74d;
+  font-size: 1.1em;
+}
+
+
+
+
+.charactercontainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.characteritem{
+  width: 24%;
+  margin: 1%;
+  padding: 1%;
+  border: 1px solid #24325FFF;
+  /* align text at the center of the border */
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+}
+
+.characteritem>a{
+  text-decoration: none;
+  color: #24325FFF;
+  font-size: 1.1em;
+  cursor:pointer;
+}
+
+
+
+
+
+
 /* .content {
   padding: 16px;
 } */
@@ -13,7 +53,7 @@
 /*
  */
 
-* {
+ * {
   font-size: 15px;
 }
 
