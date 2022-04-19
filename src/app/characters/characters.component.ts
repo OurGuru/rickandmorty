@@ -4,7 +4,9 @@ import {
   catchError,
   debounceTime,
   distinctUntilChanged,
+  filter,
   finalize,
+  startWith,
   switchMap,
   tap,
 } from 'rxjs/operators';
@@ -58,6 +60,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.myControl.setValue('');
     // this.myControl.reset('')
 
+
   }
 
 
@@ -105,7 +108,9 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
     this.myControl.valueChanges
       .pipe(
-        debounceTime(300),
+        filter(value => value.length > 1),
+        startWith(),
+        debounceTime(500),
         distinctUntilChanged(),
         tap(() => (this.isLoading = true)),
         switchMap((value) =>
