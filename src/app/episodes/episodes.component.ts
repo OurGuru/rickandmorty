@@ -33,12 +33,6 @@ export class EpisodesComponent implements OnInit, OnDestroy{
 
   isLoading = false;
   episodes: Episode[] = [];
-  // episodesPage: number = 1;
-  // notEmptyPost = true;
-  // notscrolly = true;
-  // singleEpisodeActive = false;
-  // // singleEpisodeIndex: number;
-  // singleEpisode: any;
 
   getEpisodes(){
     this.isLoading = true;
@@ -65,20 +59,10 @@ export class EpisodesComponent implements OnInit, OnDestroy{
   }
 
   getEpisodeCharacters(episode: number){
-    //make a list of the IDs of the characters in the episode then make convert the list to a comma separated string
-    console.log(episode)
     let episodeIds = this.episodes[episode].characters.map(character => character.split('/')[5]);
-    // console.log(episodeIds)
     let episodeCharacters = episodeIds.join(',');
-    // console.log(episodeCharacters)
-    // console.log(episode)
     this.episodeService.getEpisodeCharacters(episodeCharacters).subscribe(characters => {
       this.episodes[episode-1].charactersFull = characters;
-      // characters.map(character => {
-      //   console.log(this.episodes[episode])
-
-      //   this.episodes[episode].charactersFull.push(character)
-      // } )
     })
   }
 

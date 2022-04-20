@@ -12,7 +12,6 @@ export class CharacterService {
   constructor(private http:HttpClient) { }
 
   nextPage = 'https://rickandmortyapi.com/api/character?page=1';
-  // characters: Character[] = [];
   getCharacters(): Observable<Character[]>{
 
     return this.http.get<Character[]>(this.nextPage).pipe(
@@ -22,10 +21,6 @@ export class CharacterService {
           return data['results'];
         })
     )
-      // .subscribe ((data:any) => {
-      //   return this.characters = this.characters.concat(data.results);
-        // console.log(this.charactersPage)
-      // })
   }
 
   filterCharacters(nameFilter: string): Observable<Character[]>{
@@ -36,26 +31,7 @@ export class CharacterService {
       )
   }
 
-  getCharacterById(id: number): Observable<Character>{
+  getCharacterById(id: number|string): Observable<Character>{
     return this.http.get<Character>(`https://rickandmortyapi.com/api/character/${id}`)
   }
-
-
-
-    // limit result to ['results']
-    // return empty array in case of 404
-    // return this.characterservice.filterCharacters['results'];
-
-
-
-    // return this.http.get(`https://rickandmortyapi.com/api/character?name=${nameFilter}`)
-    //   .pipe(
-    //     map(data => data['results']),
-    //     map(data => {
-    //       if (data.length === 0){
-    //         return [];
-    //       }
-    //       return data;
-    //     })
-    //   )}
 }

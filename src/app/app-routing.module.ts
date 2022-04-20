@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/characters', pathMatch: 'full' },
   { path: 'episodes', component: EpisodesComponent },
   { path: 'characters', component: CharactersComponent },
-  { path: '**', redirectTo: '/episodes' }
+  { path: 'characters/:id', component: CharactersComponent },
 ];
 
 @NgModule({

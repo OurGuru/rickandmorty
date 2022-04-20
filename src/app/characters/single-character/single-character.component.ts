@@ -19,14 +19,11 @@ export class SingleCharacterComponent implements OnInit, OnDestroy {
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    // const singleCharacter = this.data.character;
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       console.log(this.id);
    }
   );
-   console.log(this.data);
-   console.log(this.data);
   }
 
 
