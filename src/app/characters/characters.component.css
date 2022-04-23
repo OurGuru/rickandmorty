@@ -21,7 +21,16 @@ mat-card {
   margin: 5px;
   color: #44281d;
   background-color: #97ce4c;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: transform .2s;
 }
+
+.mat-card:hover {
+  transform: scale(1.03);
+  z-index: 55;
+}
+
+
 
 mat-card-subtitle {
   color: #44281d;
